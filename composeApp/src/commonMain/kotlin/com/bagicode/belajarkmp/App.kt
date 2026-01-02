@@ -18,32 +18,44 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import belajarkmp.composeapp.generated.resources.Res
 import belajarkmp.composeapp.generated.resources.compose_multiplatform
+import com.bagicode.belajarkmp.ui.login.LoginScreen
+import com.bagicode.belajarkmp.ui.login.LoginUiState
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Klik Saya")
+        var state by remember { mutableStateOf(LoginUiState()) }
+//        var showContent by remember { mutableStateOf(false) }
+//        Column(
+//            modifier = Modifier
+//                .background(MaterialTheme.colorScheme.primaryContainer)
+//                .safeContentPadding()
+//                .fillMaxSize(),
+//            horizontalAlignment = Alignment.CenterHorizontally,
+//        ) {
+//            Button(onClick = { showContent = !showContent }) {
+//                Text("Klik Saya")
+//            }
+//            AnimatedVisibility(showContent) {
+//                val greeting = remember { Greeting().greet() }
+//                Column(
+//                    modifier = Modifier.fillMaxWidth(),
+//                    horizontalAlignment = Alignment.CenterHorizontally,
+//                ) {
+//                    Image(painterResource(Res.drawable.compose_multiplatform), null)
+//                    Text("Compose: $greeting")
+//                }
+//            }
+//        }
+
+        LoginScreen(
+            state = state,
+            onEmailChange = { state = state.copy(email = it) },
+            onPasswordChange = { state = state.copy(password = it) },
+            onLoginClick = {
+                state = state.copy(loading = true)
             }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
-            }
-        }
+        )
     }
 }
