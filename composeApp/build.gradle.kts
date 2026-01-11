@@ -1,4 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -6,6 +5,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 kotlin {
@@ -29,6 +29,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation("io.ktor:ktor-client-okhttp:3.3.3")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -39,6 +40,12 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation("io.ktor:ktor-client-core:3.3.3")
+            implementation("io.ktor:ktor-client-content-negotiation:3.3.3")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:3.3.3")
+        }
+        iosMain.dependencies {
+            implementation("io.ktor:ktor-client-darwin:3.3.3")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

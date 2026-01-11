@@ -25,7 +25,7 @@ import com.bagicode.belajarkmp.ui.login.LoginUiState
 @Preview
 fun App() {
     MaterialTheme {
-        var state by remember { mutableStateOf(LoginUiState()) }
+//        var state by remember { mutableStateOf(LoginUiState()) }
 //        var showContent by remember { mutableStateOf(false) }
 //        Column(
 //            modifier = Modifier
@@ -48,14 +48,16 @@ fun App() {
 //                }
 //            }
 //        }
+//
+//        LoginScreen(
+//            state = state,
+//            onEmailChange = { state = state.copy(email = it) },
+//            onPasswordChange = { state = state.copy(password = it) },
+//            onLoginClick = {
+//                state = state.copy(loading = true)
+//            }
+//        )
 
-        LoginScreen(
-            state = state,
-            onEmailChange = { state = state.copy(email = it) },
-            onPasswordChange = { state = state.copy(password = it) },
-            onLoginClick = {
-                state = state.copy(loading = true)
-            }
-        )
+        LoginScreen()
     }
 }
