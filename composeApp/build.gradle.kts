@@ -43,6 +43,8 @@ kotlin {
             implementation("io.ktor:ktor-client-core:3.3.3")
             implementation("io.ktor:ktor-client-content-negotiation:3.3.3")
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.3.3")
+            implementation("com.russhwolf:multiplatform-settings:1.1.1")
+
         }
         iosMain.dependencies {
             implementation("io.ktor:ktor-client-darwin:3.3.3")
