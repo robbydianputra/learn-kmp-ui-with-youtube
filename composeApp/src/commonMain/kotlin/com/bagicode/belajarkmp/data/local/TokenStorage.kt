@@ -13,6 +13,14 @@ class TokenStorage(
         return settings.getStringOrNull("token")
     }
 
+    fun savePhotoUrl(photoUrl: String) {
+        settings.putString("photo_url", photoUrl)
+    }
+
+    fun getPhotoUrl(): String? {
+        return settings.getStringOrNull("photo_url")
+    }
+
     fun clear() {
         settings.clear()
     }

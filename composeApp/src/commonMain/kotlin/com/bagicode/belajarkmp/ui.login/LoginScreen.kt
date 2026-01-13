@@ -61,10 +61,17 @@ fun LoginScreen(
                         )
                         println("TOKEN: ${result?.message}")
 
-                        if (result?.status.equals("success")) {
-                            result?.data?.token?.let { token ->
-                                tokenStorage.saveToken(token)
-                            }
+//                        if (result?.status.equals("success")) {
+//                            result?.data?.token?.let { token ->
+//                                tokenStorage.saveToken(token)
+//                            }
+//                            data.user.image?.let(tokenStorage::savePhotoUrl)
+//                            onLoginSuccess(true)
+//                        }
+
+                        result?.takeIf { it.status == "success" }?.data?.let { data ->
+                            data.token?.let(tokenStorage::saveToken)
+                            data.user?.image?.let(tokenStorage::savePhotoUrl)
                             onLoginSuccess(true)
                         }
 

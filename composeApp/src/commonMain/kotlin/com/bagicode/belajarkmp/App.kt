@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.bagicode.belajarkmp.data.local.TokenStorage
 import com.bagicode.belajarkmp.data.local.provideSettings
+import com.bagicode.belajarkmp.ui.home.HomeScreen
 import com.bagicode.belajarkmp.ui.login.LoginScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -38,9 +39,16 @@ fun App() {
             when (isLoggedIn) {
                 null -> CircularProgressIndicator()
                 true -> {
-                    LaunchedEffect(Unit) {
-                        snackbarHostState.showSnackbar("Login berhasil")
-                    }
+//                    LaunchedEffect(Unit) {
+//                        snackbarHostState.showSnackbar("Login berhasil")
+//                    }
+                    HomeScreen(
+                        tokenStorage = storage,
+                        onLogout = {
+                            storage.clear()
+                            isLoggedIn = false
+                        }
+                    )
                 }
                 false -> LoginScreen(
                     onLoginSuccess = {
